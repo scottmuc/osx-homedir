@@ -46,6 +46,9 @@ set list
 
 set wildmode=list:longest "make tab completion complete with common chars
 
+" stop the creation of swap and backup files. will wait until I get bitten
+" by this before re-enabling them
+set noswapfile
 set nobackup
 set nowritebackup
 
