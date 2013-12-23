@@ -1,0 +1,30 @@
+# This file is managed by chef
+[user]
+  name = Scott Muc
+  email = scottmuc@gmail.com
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+[color]
+  ui = auto
+[alias]
+  # svn compatible aliases
+  st = status
+  ci = commit
+  co = checkout
+
+  # custom log that is a copy of Gary Bernhardt's
+  l  = "!source ~/.githelpers && pretty_git_log"
+  ll = log --oneline --decorate --graph
+
+  # if I'm not adding 1 file at a time, then I want my stage to
+  # look like my workspace.
+  aa = add --all
+
+  # want to inspect the merges before doing it automagically
+  pull = pull --ff-only
+
+[push]
+  # only want to push my current branch
+  default = tracking
+
