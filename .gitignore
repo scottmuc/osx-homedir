@@ -45,3 +45,10 @@ scotts_tools/
 /Music
 /Pictures
 /Public
+
+# Ignoring personal workspaces
+/blog
+/code
+/projects
+
+
