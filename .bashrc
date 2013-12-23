@@ -3,7 +3,6 @@ source ~/bin/colours.bash
 export PATH="~/bin:$PATH"
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
-
 export TERM='xterm-color'
 alias ls='ls -G'
 alias ll='ls -lhG'
@@ -48,6 +47,8 @@ function use_rbenv() {
     eval "$(rbenv init -)"
   fi
 }
+
+PS1="${VIOLET}\\w ${GREEN}? ${RESET}"
 
 source ~/bin/git_completion.bash
 
