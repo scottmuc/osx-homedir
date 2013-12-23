@@ -27,6 +27,7 @@ scotts_tools/
 /.puppet
 /.rvm
 /.rvmrc
+/.ssh
 /.subversion
 /.vagrant.d
 /.viminfo
