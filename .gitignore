@@ -8,17 +8,40 @@
 # to be used by everyone
 scotts_tools/
 
-# Ignoring any virtualenv I create
-.virtualenv/
+# Ignoring temporary dot directories
+/.CFUserTextEncoding
+/.NERDTreeBookmarks
+/.Trash
+/.ansible
+/.bash_history
+/.bundler
+/.cache
+/.cups
+/.dropbox
+/.gem
+/.irb_history
+/.lesshst
+/.local
+/.macports
+/.npm
+/.puppet
+/.rvm
+/.rvmrc
+/.subversion
+/.vagrant.d
+/.viminfo
+/.zlogin
+
+# Ignoring application created directories
+/Dropbox
+/VirtualBox VMs
 
 # Ignoring standard OSX directories
 /Desktop
 /Documents
 /Downloads
-/Dropbox
 /Library
 /Movies
 /Music
 /Pictures
 /Public
-/VirtualBox VMs
