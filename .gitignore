@@ -31,6 +31,7 @@ scotts_tools/
 /.subversion
 /.vagrant.d
 /.viminfo
+/.vim/.netrwhist
 /.zlogin
 
 # Ignoring application created directories
