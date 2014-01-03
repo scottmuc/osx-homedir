@@ -19,6 +19,7 @@ scotts_tools/
 /.cups
 /.dropbox
 /.gem
+/.irb-history
 /.irb_history
 /.lesshst
 /.local
