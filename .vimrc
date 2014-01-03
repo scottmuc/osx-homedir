@@ -1,8 +1,6 @@
 "
-" My .vimrc file
+" Scott Muc's .vimrc file
 "
-
-filetype off
 call pathogen#infect()
 
 "----------------------------------------------------------
@@ -14,8 +12,6 @@ set nocompatible
 
 " not sure why I wouldn't ever want syntax on
 syntax on
-
-set guifont=Inconsolata:h18
 
 " enable file type detection
 filetype plugin indent on
