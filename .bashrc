@@ -3,7 +3,9 @@ source ~/bin/colours.bash
 export PATH="~/bin:$PATH"
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
-export TERM='xterm-color'
+# need this set to xterm-256color to get proper color support in vim
+export TERM='xterm-256color'
+
 alias ls='ls -G'
 alias ll='ls -lhG'
 alias la='ls -lahG'
