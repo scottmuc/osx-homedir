@@ -18,6 +18,7 @@ scotts_tools/
 /.cache
 /.cups
 /.dropbox
+/.dropbox-master
 /.gem
 /.irb-history
 /.irb_history
