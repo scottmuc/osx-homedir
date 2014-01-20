@@ -50,7 +50,7 @@ function use_rbenv() {
   fi
 }
 
-PS1="${VIOLET}\\w ${GREEN}? ${RESET}"
+PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
 
 source ~/bin/git_completion.bash
 
