@@ -51,9 +51,9 @@ scotts_tools/
 /Public
 
 # Ignoring personal workspaces
-/blog
 /code
 /projects
+/website
 /workstation
 
 
