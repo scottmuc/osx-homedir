@@ -27,6 +27,7 @@ scotts_tools/
 /.macports
 /.npm
 /.puppet
+/.python-eggs
 /.rvm
 /.rvmrc
 /.ssh
