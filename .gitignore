@@ -42,6 +42,7 @@ scotts_tools/
 /VirtualBox VMs
 
 # Ignoring standard OSX directories
+/Applications
 /Desktop
 /Documents
 /Downloads
