@@ -26,3 +26,4 @@
     ll  = log --oneline --decorate --graph
     lla = !git ll --all
 
+    pom = push origin master
