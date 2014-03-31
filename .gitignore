@@ -54,9 +54,11 @@ scotts_tools/
 
 # Ignoring personal workspaces
 /code
+/presentations
 /projects
 /website
 /work
 /workstation
+
 
 
