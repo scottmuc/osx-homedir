@@ -58,6 +58,7 @@ let maplocalleader=","
 " set custom file types I've configured
 autocmd BufRead,BufNewFile *.md set wm=2 tw=120
 autocmd BufRead,BufNewFile *.markdown set wm=2 tw=120
+autocmd BufRead,BufNewFile soloistrc set ft=yaml
 
 "----------------------------------------------------------
 " NERD Tree plugin settings
