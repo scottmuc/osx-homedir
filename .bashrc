@@ -20,7 +20,7 @@ export HISTSIZE=10000
 shopt -s histappend
 
 # intellij specific
-INTELLIJ="/Applications/IntelliJ\ IDEA\ 12.app/Contents/MacOS/idea"
+INTELLIJ="~/Applications/IntelliJ\ IDEA\ 13\ CE.app/Contents/MacOS/idea"
 alias intellij="${INTELLIJ} &"
 alias op="${INTELLIJ} \`pwd\` &"
 alias opr="${INTELLIJ} \`pwd\`/\`ls *.ipr\` &"
