@@ -51,6 +51,7 @@ function use_rbenv() {
 }
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
+PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
 
 source ~/bin/git_completion.bash
 
