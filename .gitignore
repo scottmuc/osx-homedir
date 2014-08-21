@@ -20,11 +20,13 @@ scotts_tools/
 /.dropbox
 /.dropbox-master
 /.gem
+/.heroku
 /.irb-history
 /.irb_history
 /.lesshst
 /.local
 /.macports
+/.netrc
 /.npm
 /.puppet
 /.python-eggs
