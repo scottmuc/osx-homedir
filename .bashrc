@@ -55,3 +55,9 @@ PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
 
 source ~/bin/git_completion.bash
 
+added_keys=`ssh-add -l`
+
+if [ ! $(echo $added_keys | grep -o -e github_rsa) ]; then
+    ssh-add "$HOME/.ssh/github_rsa"
+fi
+
