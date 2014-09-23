@@ -16,6 +16,8 @@ scotts_tools/
 /.bash_history
 /.bundler
 /.cache
+/.cpan
+/.cpanm
 /.cups
 /.dropbox
 /.dropbox-master
@@ -28,6 +30,7 @@ scotts_tools/
 /.macports
 /.netrc
 /.npm
+/.perl5
 /.puppet
 /.python-eggs
 /.rvm
