@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/vagrant"]
 	path = .vim/bundle/vagrant
 	url = git://github.com/markcornick/vim-vagrant.git
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
+	url = git://github.com/fatih/vim-go.git
