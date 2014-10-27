@@ -15,6 +15,7 @@ scotts_tools/
 /.android
 /.ansible
 /.bash_history
+/.berkshelf
 /.bundler
 /.cache
 /.cpan
@@ -32,6 +33,7 @@ scotts_tools/
 /.netrc
 /.npm
 /.perl5
+/.psql_history
 /.puppet
 /.python-eggs
 /.rvm
