@@ -24,7 +24,6 @@ set autoindent
 
 " allows modified buffers to be hidden
 set hidden
-set nu
 
 colorscheme molokai
 
@@ -59,6 +58,23 @@ let maplocalleader=","
 autocmd BufRead,BufNewFile *.md set wm=2 tw=120
 autocmd BufRead,BufNewFile *.markdown set wm=2 tw=120
 autocmd BufRead,BufNewFile soloistrc set ft=yaml
+
+
+"----------------------------------------------------------
+" Line numbers
+"----------------------------------------------------------
+set relativenumber      "use relative numbers by default
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-l> :call NumberToggle()<cr>
+
 
 "----------------------------------------------------------
 " NERD Tree plugin settings
