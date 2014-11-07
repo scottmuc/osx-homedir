@@ -41,6 +41,7 @@ scotts_tools/
 /.ssh
 /.subversion
 /.vagrant.d
+/.vimgolf
 /.viminfo
 /.vim/.netrwhist
 /.zlogin
