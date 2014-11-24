@@ -25,11 +25,9 @@ alias intellij="${INTELLIJ} &"
 alias op="${INTELLIJ} \`pwd\` &"
 alias opr="${INTELLIJ} \`pwd\`/\`ls *.ipr\` &"
 
-alias el="vim ~/Dropbox/Docs/lists.yml"
 alias vdu="vagrant destroy -f && vagrant up"
 alias q="exit"
 alias be="bundle exec"
-alias play="mp3blaster"
 
 export EDITOR="vim -f"
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
@@ -39,14 +37,6 @@ function use_rvm() {
   if [ "$RVM" = "" ]; then
     . "$HOME/.rvm/scripts/rvm"
     PATH=$PATH:$HOME/.rvm/bin
-  fi
-}
-
-function use_rbenv() {
-  RBENV=`which rbenv`
-  if [ "$RBENV" = "" ]; then
-    PATH=$HOME/.rbenv/bin:$PATH
-    eval "$(rbenv init -)"
   fi
 }
 
