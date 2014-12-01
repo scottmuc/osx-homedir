@@ -25,6 +25,7 @@ scotts_tools/
 /.dropbox-master
 /.gem
 /.heroku
+/.inputrc
 /.irb-history
 /.irb_history
 /.lesshst
