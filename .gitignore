@@ -41,6 +41,7 @@ scotts_tools/
 /.rvmrc
 /.ssh
 /.subversion
+/.tor
 /.vagrant.d
 /.vimgolf
 /.viminfo
