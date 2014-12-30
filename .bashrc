@@ -41,7 +41,10 @@ function use_rvm() {
 }
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
-PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
+
+if [ -e ~/.rvm/bin/rvm-prompt ]; then
+  PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
+fi
 
 source ~/bin/git_completion.bash
 
