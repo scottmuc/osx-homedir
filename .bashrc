@@ -32,21 +32,10 @@ alias be="bundle exec"
 export EDITOR="vim -f"
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 
-function use_rvm() {
-  RVM=`which rvm`
-  if [ "$RVM" = "" ]; then
-    . "$HOME/.rvm/scripts/rvm"
-    PATH=$PATH:$HOME/.rvm/bin
-  fi
-}
+source /usr/local/share/chruby/chruby.sh
+source ~/bin/git_completion.bash
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
-
-if [ -e ~/.rvm/bin/rvm-prompt ]; then
-  PS1="\$(~/.rvm/bin/rvm-prompt) $PS1"
-fi
-
-source ~/bin/git_completion.bash
 
 added_keys=`ssh-add -l`
 

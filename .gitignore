@@ -37,8 +37,8 @@ scotts_tools/
 /.psql_history
 /.puppet
 /.python-eggs
-/.rvm
-/.rvmrc
+/.rubies
+/.ruby-version
 /.ssh
 /.subversion
 /.tor
