@@ -16,6 +16,7 @@ scotts_tools/
 /.ansible
 /.bash_history
 /.berkshelf
+/.boot2docker
 /.bundler
 /.cache
 /.cpan
@@ -34,6 +35,7 @@ scotts_tools/
 /.netrc
 /.npm
 /.perl5
+/.plumber
 /.psql_history
 /.puppet
 /.python-eggs
@@ -49,7 +51,7 @@ scotts_tools/
 /.zlogin
 
 # Ignoring application created directories
-/Dropbox
+/Dropbox*
 /VirtualBox VMs
 
 # Ignoring standard OSX directories
