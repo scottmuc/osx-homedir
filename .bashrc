@@ -19,12 +19,6 @@ export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
-# intellij specific
-INTELLIJ="~/Applications/IntelliJ\ IDEA\ 13\ CE.app/Contents/MacOS/idea"
-alias intellij="${INTELLIJ} &"
-alias op="${INTELLIJ} \`pwd\` &"
-alias opr="${INTELLIJ} \`pwd\`/\`ls *.ipr\` &"
-
 alias vdu="vagrant destroy -f && vagrant up"
 alias q="exit"
 alias be="bundle exec"
@@ -32,14 +26,7 @@ alias be="bundle exec"
 export EDITOR="vim -f"
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 
-source /usr/local/share/chruby/chruby.sh
 source ~/bin/git_completion.bash
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
-
-added_keys=`ssh-add -l`
-
-if [ ! $(echo $added_keys | grep -o -e github_rsa) ]; then
-    ssh-add "$HOME/.ssh/github_rsa"
-fi
 
