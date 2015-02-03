@@ -26,6 +26,8 @@ alias be="bundle exec"
 export EDITOR="vim -f"
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 
+eval $(boot2docker shellinit 2>/dev/null)
+
 source ~/bin/git_completion.bash
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
