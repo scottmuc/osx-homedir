@@ -59,6 +59,9 @@ autocmd BufRead,BufNewFile *.md set wm=2 tw=120
 autocmd BufRead,BufNewFile *.markdown set wm=2 tw=120
 autocmd BufRead,BufNewFile soloistrc set ft=yaml
 
+" Go lang related mappings
+
+nmap <C-]> :GoDef<cr>
 
 "----------------------------------------------------------
 " Line numbers
