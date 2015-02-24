@@ -58,6 +58,8 @@ let maplocalleader=","
 autocmd BufRead,BufNewFile *.md set wm=2 tw=120
 autocmd BufRead,BufNewFile *.markdown set wm=2 tw=120
 autocmd BufRead,BufNewFile soloistrc set ft=yaml
+autocmd BufRead,BufNewFile Packfile set ft=json
+autocmd BufRead,BufNewFile Pipeline set ft=json
 
 " Go lang related mappings
 
