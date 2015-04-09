@@ -5,7 +5,7 @@ RESTORE_MODE = ARGV[0] == "restore"
 files = {
   "ftl" => {
     :local_path => '~/Library/Application\ Support/FasterThanLight',
-    :backup_path => '/Volumes/SMUCBAK/back/FasterThanLight'
+    :backup_path => '~/Dropbox/gameback/FasterThanLight'
   }
 }
 
