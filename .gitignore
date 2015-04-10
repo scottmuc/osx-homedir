@@ -14,11 +14,13 @@ scotts_tools/
 /.Trash
 /.android
 /.ansible
+/.aqbanking
 /.bash_history
 /.berkshelf
 /.boot2docker
 /.bundler
 /.cache
+/.config
 /.cpan
 /.cpanm
 /.cups
