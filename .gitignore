@@ -31,6 +31,8 @@ scotts_tools/
 /.inputrc
 /.irb-history
 /.irb_history
+/.ivy2
+/.jenv
 /.lesshst
 /.local
 /.macports
@@ -43,6 +45,7 @@ scotts_tools/
 /.python-eggs
 /.rubies
 /.ruby-version
+/.sbt
 /.ssh
 /.subversion
 /.tor
