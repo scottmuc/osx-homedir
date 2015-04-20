@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/dockerfile"]
 	path = .vim/bundle/dockerfile
 	url = git://github.com/ekalinin/Dockerfile.vim.git
+[submodule ".vim/bundle/vim-scala"]
+	path = .vim/bundle/vim-scala
+	url = git://github.com/derekwyatt/vim-scala.git
