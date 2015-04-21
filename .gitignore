@@ -46,6 +46,7 @@ scotts_tools/
 /.rubies
 /.ruby-version
 /.sbt
+/.scala_history
 /.ssh
 /.subversion
 /.tor
