@@ -4,10 +4,6 @@
 # anyone using OSX just ignore this
 .DS_Store
 
-# I sometimes add my own personal scripts near a repo but they aren't ready
-# to be used by everyone
-scotts_tools/
-
 # Ignoring temporary dot directories
 /.CFUserTextEncoding
 /.NERDTreeBookmarks
@@ -28,6 +24,8 @@ scotts_tools/
 /.dropbox-master
 /.gem
 /.heroku
+/.IdeaIC14
+/.idea-build
 /.inputrc
 /.irb-history
 /.irb_history
