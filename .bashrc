@@ -1,12 +1,9 @@
 source ~/bin/colours.bash
 source ~/bin/git_completion.bash
 
-export GOPATH=~/code/go
-
 export PATH="$HOME/bin:$PATH"
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/.jenv/bin:$PATH"
 
 # need this set to xterm-256color to get proper color support in vim
 export TERM='xterm-256color'
@@ -29,9 +26,6 @@ alias q="exit"
 alias be="bundle exec"
 
 export EDITOR="vim -f"
-
-eval "$(boot2docker shellinit 2>/dev/null)"
-eval "$(jenv init -)"
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
 
