@@ -11,6 +11,7 @@
 /.android
 /.ansible
 /.aqbanking
+/.atom
 /.bash_history
 /.berkshelf
 /.boot2docker
