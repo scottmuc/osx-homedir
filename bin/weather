@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
-curl http://wttr.in
+if [ -z "$1" ]; then
+  curl http://wttr.in
+else
+  curl http://wttr.in/$1
+fi
+
 
