@@ -1,6 +1,8 @@
 source ~/bin/colours.bash
 source ~/bin/git_completion.bash
 
+export GOPATH=~/go
+
 export PATH="$HOME/bin:$PATH"
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
