@@ -2,63 +2,60 @@
 
 set -e
 
-cd ~/
+main() {
+  cd ~/
 
-if [ ! -f /tmp/ran_softwareupdate ]
-then
-  echo Running system updates
-  if (sudo softwareupdate -l | grep -q restart)
+  softwareupdate_indicator=~/.softwareupdate_indicator
+  if [ ! -f "${softwareupdate_indicator}" ]
   then
-    sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
-    echo Reboot is needed
-    exit 0
-  else
-    sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
-  fi
-else
-  last_run=$(echo $(($(date +%s) - $(stat -t %s -f %m -- "README.md"))))
-  last_run_days=$(( $last_run / (24 * 60 * 60) ))
-  echo Last software update was $last_run_days days ago
-  if [ "${last_run_days}" -gt "7" ]
-  then
-    echo Going to run a softwareupdate since it has been a while
     echo Running system updates
     if (sudo softwareupdate -l | grep -q restart)
     then
-      sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
+      sudo softwareupdate -i -a && touch "${softwareupdate_indicator}"
       echo Reboot is needed
       exit 0
     else
-      sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
+      sudo softwareupdate -i -a && touch "${softwareupdate_indicator}"
     fi
   else
-    echo Since softwareupdate ran recently, not going to do anything
-    echo remove /tmp/ran_softwareupdate to force an update
+    last_run=$(echo $(($(date +%s) - $(stat -t %s -f %m -- "README.md"))))
+    last_run_days=$(( $last_run / (24 * 60 * 60) ))
+    echo Last software update was $last_run_days days ago
+    if [ "${last_run_days}" -gt "7" ]
+    then
+      echo Going to run a softwareupdate since it has been a while
+      echo Running system updates
+      if (sudo softwareupdate -l | grep -q restart)
+      then
+        sudo softwareupdate -i -a && touch "${softwareupdate_indicator}"
+        echo Reboot is needed
+        exit 0
+      else
+        sudo softwareupdate -i -a && touch "${softwareupdate_indicator}"
+      fi
+    else
+      echo Since softwareupdate ran recently, not going to do anything
+      echo remove /tmp/ran_softwareupdate to force an update
+    fi
   fi
-fi
 
-git submodule update --init --recursive
+  git submodule update --init --recursive
 
-if [ ! -d ~/workspace/sprout-wrap ]
-then
-  git clone git@github.com:scottmuc/sprout-wrap ~/workspace/sprout-wrap
-fi
+  if [ ! -d ~/workspace/sprout-wrap ]
+  then
+    git clone git@github.com:scottmuc/sprout-wrap ~/workspace/sprout-wrap
+  fi
 
-~/workspace/sprout-wrap/runsoloist
+  ~/workspace/sprout-wrap/runsoloist
 
-if grep -q Restart "${soloist_log}"
-then
-  echo Soloist has signalled that a restart is necessary. Reboot your
-  echo machine and run this again to continue.
-  exit 1
-fi
+  if [ ! -x /usr/local/bin/brew ]
+  then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  else
+    brew update || true
+  fi
 
-if [ ! -x /usr/local/bin/brew ]
-then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-else
-  brew update || true
-fi
+  brew bundle
+}
 
-brew bundle
-
+main

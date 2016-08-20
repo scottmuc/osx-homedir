@@ -48,6 +48,7 @@
 /.ruby-version
 /.sbt
 /.scala_history
+/.softwareupdate_indicator
 /.ssh
 /.subversion
 /.tor
