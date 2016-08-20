@@ -1,0 +1,16 @@
+
+brew 'jq'
+brew 'mp3blaster'
+brew 'pstree'
+brew 'tree'
+
+cask '1password'
+cask 'dropbox'
+cask 'evernote'
+cask 'google-chrome'
+cask 'selfcontrol'
+cask 'skype'
+cask 'tunnelbear'
+cask 'vagrant'
+cask 'vlc'
+cask 'virtualbox'
