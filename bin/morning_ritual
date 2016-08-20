@@ -4,6 +4,39 @@ set -e
 
 cd ~/
 
+if [ ! -f /tmp/ran_softwareupdate ]
+then
+  echo Running system updates
+  if (sudo softwareupdate -l | grep -q restart)
+  then
+    sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
+    echo Reboot is needed
+    exit 0
+  else
+    sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
+  fi
+else
+  last_run=$(echo $(($(date +%s) - $(stat -t %s -f %m -- "README.md"))))
+  last_run_days=$(( $last_run / (24 * 60 * 60) ))
+  echo Last software update was $last_run_days days ago
+  if [ "${last_run_days}" -gt "7" ]
+  then
+    echo Going to run a softwareupdate since it has been a while
+    echo Running system updates
+    if (sudo softwareupdate -l | grep -q restart)
+    then
+      sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
+      echo Reboot is needed
+      exit 0
+    else
+      sudo softwareupdate -i -a && touch /tmp/ran_softwareupdate
+    fi
+  else
+    echo Since softwareupdate ran recently, not going to do anything
+    echo remove /tmp/ran_softwareupdate to force an update
+  fi
+fi
+
 git submodule update --init --recursive
 
 if [ ! -d ~/workspace/sprout-wrap ]
