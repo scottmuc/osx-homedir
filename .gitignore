@@ -13,8 +13,10 @@
 /.aqbanking
 /.atom
 /.bash_history
+/.bash_sessions
 /.berkshelf
 /.boot2docker
+/.bundle
 /.bundler
 /.cache
 /.config
