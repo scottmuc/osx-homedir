@@ -8,7 +8,7 @@ git init
 git remote add origin git@github.com:scottmuc/osx-homedir.git
 git fetch --all
 git checkout master
-bin/daily_ritual
+bin/morning_ritual
 ```
 
 **Post bootstrap TODO**

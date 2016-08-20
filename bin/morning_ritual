@@ -11,7 +11,15 @@ then
   git clone git@github.com:scottmuc/sprout-wrap ~/workspace/sprout-wrap
 fi
 
-~/workspace/sprout-wrap/runsoloist
+soloist_log=/tmp/soloist.log
+~/workspace/sprout-wrap/runsoloist | tee "${soloist_log}"
+
+if grep -q Restart "${soloist_log}"
+then
+  echo Soloist has signalled that a restart is necessary. Reboot your
+  echo machine and run this again to continue.
+  exit 1
+fi
 
 if [ ! -x /usr/local/bin/brew ]
 then
