@@ -11,8 +11,7 @@ then
   git clone git@github.com:scottmuc/sprout-wrap ~/workspace/sprout-wrap
 fi
 
-soloist_log=/tmp/soloist.log
-~/workspace/sprout-wrap/runsoloist 2>&1 | tee "${soloist_log}"
+~/workspace/sprout-wrap/runsoloist
 
 if grep -q Restart "${soloist_log}"
 then
