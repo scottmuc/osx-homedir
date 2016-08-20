@@ -3,6 +3,7 @@
 set -e
 
 cd ~/
+
 git submodule update --init --recursive
 
 if [ ! -d ~/workspace/sprout-wrap ]
@@ -11,3 +12,13 @@ then
 fi
 
 ~/workspace/sprout-wrap/runsoloist
+
+if [ ! -x /usr/local/bin/brew ]
+then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+  brew update || true
+fi
+
+brew bundle
+
