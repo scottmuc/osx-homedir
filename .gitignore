@@ -8,58 +8,26 @@
 /.CFUserTextEncoding
 /.NERDTreeBookmarks
 /.Trash
-/.android
-/.ansible
-/.aqbanking
-/.atom
 /.bash_history
 /.bash_sessions
-/.berkshelf
-/.boot2docker
 /.bundle
 /.bundler
 /.cache
 /.config
-/.cpan
-/.cpanm
 /.cups
 /.dropbox
 /.dropbox-master
 /.gem
-/.heroku
-/.IdeaIC14
-/.idea-build
-/.inputrc
-/.irb-history
-/.irb_history
-/.ivy2
-/.jenv
 /.lesshst
 /.local
-/.macports
 /.netrc
-/.npm
-/.perl5
-/.plumber
-/.psql_history
-/.puppet
-/.python-eggs
-/.rubies
-/.ruby-version
-/.sbt
-/.scala_history
-/.softwareupdate_indicator
 /.ssh
-/.subversion
-/.tor
 /.vagrant.d
-/.vimgolf
 /.viminfo
 /.vim/.netrwhist
-/.zlogin
 
 # Ignoring application created directories
-/Dropbox*
+/Dropbox
 /VirtualBox VMs
 
 # Ignoring standard OSX directories
@@ -73,13 +41,5 @@
 /Pictures
 /Public
 
-# Ignoring personal workspaces
-/code
-/presentations
-/projects
-/website
-/work
-/workstation
-
-
-
+# This is created my the bootstrap script
+/.softwareupdate_indicator
