@@ -20,4 +20,6 @@ bin/coalesce_this_machine
   that's stored in 1Password
 * Launch Google Chrome and bind it to my account
 * Launch Evernote and begin file sync
+* Launch shiftit and get it setup
+* Launch flycut and get it setup
 
