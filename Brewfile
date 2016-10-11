@@ -1,4 +1,5 @@
 
+brew 'golang'
 brew 'jq'
 brew 'mp3blaster'
 brew 'pstree'
