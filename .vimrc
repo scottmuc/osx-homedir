@@ -25,7 +25,9 @@ set autoindent
 " allows modified buffers to be hidden
 set hidden
 
-colorscheme molokai
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 
 set nostartofline
 set scrolloff=6
