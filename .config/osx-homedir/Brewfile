@@ -1,7 +1,8 @@
+tap 'neovim/neovim'
 
 brew 'golang'
 brew 'jq'
-brew 'mp3blaster'
+brew 'neovim'
 brew 'pstree'
 brew 'tree'
 
