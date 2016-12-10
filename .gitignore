@@ -13,7 +13,6 @@
 /.bundle
 /.bundler
 /.cache
-/.config
 /.cups
 /.dropbox
 /.dropbox-master
@@ -24,7 +23,6 @@
 /.ssh
 /.vagrant.d
 /.viminfo
-/.vim/.netrwhist
 
 # Ignoring application created directories
 /Dropbox

@@ -1,7 +1,29 @@
 "
 " Scott Muc's .vimrc file
 "
-call pathogen#infect()
+call plug#begin()
+
+" All the colorschemes
+Plug 'flazz/vim-colorschemes'
+
+" File navigation
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Lets do go development
+Plug 'fatih/vim-go'
+
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
+
+" Searching with AG
+Plug 'rking/ag.vim'
+
+" Make commenting easier
+Plug 'tpope/vim-commentary'
+
+
+" Required
+call plug#end()
 
 "----------------------------------------------------------
 " OS specific configuration
@@ -24,10 +46,6 @@ set autoindent
 
 " allows modified buffers to be hidden
 set hidden
-
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
 
 set nostartofline
 set scrolloff=6

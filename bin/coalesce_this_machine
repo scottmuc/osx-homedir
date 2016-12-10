@@ -4,9 +4,9 @@ set -e
 
 main() {
   cd ~/
-  update_submodules
   invoke_sprout_wrap
   invoke_homebrew
+  setup_neovim
   invoke_softewareupdate
 }
 
@@ -32,8 +32,9 @@ invoke_homebrew() {
   brew bundle --file=~/.config/osx-homedir/Brewfile
 }
 
-update_submodules() {
-  git submodule update --init --recursive
+setup_neovim() {
+  nvim -c "PlugInstall" -c "qall" --headless
+  nvim -c "PlugUpdate" -c "qall" --headless
 }
 
 run_softwareupdate() {
