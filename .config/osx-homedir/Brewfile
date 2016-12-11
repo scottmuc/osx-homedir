@@ -2,8 +2,9 @@ tap 'neovim/neovim'
 
 brew 'golang'
 brew 'jq'
-brew 'neovim'
+brew 'neovim/neovim/neovim'
 brew 'pstree'
+brew 'python3'
 brew 'tree'
 
 cask '1password'

@@ -21,6 +21,9 @@ Plug 'rking/ag.vim'
 " Make commenting easier
 Plug 'tpope/vim-commentary'
 
+Plug 'Shougo/deoplete.nvim'
+
+Plug 'scrooloose/nerdtree'
 
 " Required
 call plug#end()
@@ -34,6 +37,8 @@ set nocompatible
 
 " not sure why I wouldn't ever want syntax on
 syntax on
+
+colorscheme molokai
 
 " enable file type detection
 filetype plugin indent on
@@ -107,14 +112,6 @@ nnoremap <C-l> :call NumberToggle()<cr>
 
 " toggle NERD Tree with CTRL N
 nmap <silent> <c-n> :NERDTreeToggle<cr>
-
-" Let's make it easy to edit this file (mnemonic for the key sequence is
-" 'e'dit 'v'imrc)
-nmap <leader>ev :e $MYVIMRC<cr>
-
-" And to source this file as well (mnemonic for the key sequence is
-" 's'ource 'v'imrc)
-nmap <leader>sv :so $MYVIMRC<cr>
 
 imap jk <esc>
 

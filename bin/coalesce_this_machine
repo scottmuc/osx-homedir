@@ -35,6 +35,9 @@ invoke_homebrew() {
 setup_neovim() {
   nvim -c "PlugInstall" -c "qall" --headless
   nvim -c "PlugUpdate" -c "qall" --headless
+  nvim -c "UpdateRemotePlugins" -c "qall" --headless
+  pip3 install -q neovim
+  nvim -c "GoInstallBinaries" -c "qall!" --headless /tmp/foo.go
 }
 
 run_softwareupdate() {
