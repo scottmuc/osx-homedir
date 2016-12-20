@@ -4,11 +4,8 @@
 
 ```
 sudo xcodebuild -license
-git init
-git remote add origin git@github.com:scottmuc/osx-homedir.git
-git fetch --all
-git checkout master
-bin/coalesce_this_machine
+curl -L https://raw.githubusercontent.com/scottmuc/osx-homedir/master/bin/curl-bash-bootstrap.bash 2> /dev/null | bash
+~/bin/coalesce_this_machine
 ```
 
 **Post Coalescence**

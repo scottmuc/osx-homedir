@@ -14,7 +14,7 @@ main() {
 invoke_sprout_wrap() {
   if [ ! -d ~/workspace/sprout-wrap ]
   then
-    git clone git@github.com:scottmuc/sprout-wrap ~/workspace/sprout-wrap
+    git clone https://github.com/scottmuc/sprout-wrap.git ~/workspace/sprout-wrap
   fi
 
   ~/workspace/sprout-wrap/runsoloist
