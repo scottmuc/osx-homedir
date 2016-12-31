@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-sudo discoveryutil udnsflushcaches
+# This command only works on macOS Sierra
+# reference: https://coolestguidesontheplanet.com/clear-the-local-dns-cache-in-osx/
+sudo killall -HUP mDNSResponder
+
+echo "Consider yourself flushed!"
