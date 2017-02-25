@@ -1,11 +1,12 @@
 source ~/bin/colours.bash
 source ~/bin/git_completion.bash
 
-export GOPATH=~/go
-
+# ~/bin is the location of personal scripts I would like available everywhere
 export PATH="$HOME/bin:$PATH"
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
+
+# Go 1.8 will default GOPATH to ~/go and I would like to expose the go installed
+# tools everywhere
+export PATH="$HOME/go/bin:$PATH"
 
 # need this set to xterm-256color to get proper color support in vim
 export TERM='xterm-256color'
