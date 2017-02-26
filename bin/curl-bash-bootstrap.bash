@@ -24,7 +24,7 @@ pushd ${target_dir}
   git checkout master
 popd
 
-echo You are not ready to run:
+echo You are now ready to run:
 echo
 echo   ${target_dir}/bin/coalesce_this_machine
 echo
