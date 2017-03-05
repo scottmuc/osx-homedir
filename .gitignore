@@ -13,6 +13,7 @@
 /.bundle
 /.bundler
 /.cache
+/.config/gtk-2.0
 /.cups
 /.dropbox
 /.dropbox-master
@@ -40,4 +41,4 @@
 /Public
 
 # This is created my the bootstrap script
-/.softwareupdate_indicator
+/.config/osx-homedir/.softwareupdate_indicator

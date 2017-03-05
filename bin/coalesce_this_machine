@@ -58,7 +58,7 @@ last_softwareupdate_was_over_7_days_ago() {
 
 invoke_softewareupdate() {
   local softwareupdate_indicator
-  softwareupdate_indicator=~/.softwareupdate_indicator
+  softwareupdate_indicator=~/.config/osx-homedir/.softwareupdate_indicator
 
   if [ ! -f "${softwareupdate_indicator}" ]
   then
