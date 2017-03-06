@@ -2,6 +2,7 @@ tap 'neovim/neovim'
 
 brew 'golang'
 brew 'jq'
+brew 'mr'
 brew 'neovim/neovim/neovim'
 brew 'pstree'
 brew 'python3'
