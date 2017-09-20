@@ -6,6 +6,7 @@ brew 'mr'
 brew 'neovim'
 brew 'pstree'
 brew 'python3'
+brew 'testssl'
 brew 'tree'
 
 cask '1password'
