@@ -1,11 +1,13 @@
 tap 'neovim/neovim'
 
+brew 'chruby'
 brew 'golang'
 brew 'jq'
 brew 'mr'
 brew 'neovim'
 brew 'pstree'
 brew 'python3'
+brew 'ruby-installer'
 brew 'testssl'
 brew 'tree'
 

@@ -42,3 +42,6 @@
 
 # This is created my the bootstrap script
 /.config/osx-homedir/.softwareupdate_indicator
+
+# Where rubys are installed via ruby-install
+/.rubies
