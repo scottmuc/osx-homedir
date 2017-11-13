@@ -1,6 +1,7 @@
 tap 'neovim/neovim'
 
 brew 'chruby'
+brew 'dep'
 brew 'golang'
 brew 'jq'
 brew 'mr'
