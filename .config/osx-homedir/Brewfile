@@ -12,8 +12,8 @@ brew 'ruby-installer'
 brew 'testssl'
 brew 'tree'
 
+
 cask '1password'
-cask 'dropbox'
 cask 'evernote'
 cask 'flycut'
 cask 'google-chrome'
