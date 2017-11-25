@@ -14,7 +14,6 @@ brew 'tree'
 
 
 cask '1password'
-cask 'evernote'
 cask 'flycut'
 cask 'google-chrome'
 cask 'iterm2'
