@@ -4,12 +4,29 @@ set -e
 
 main() {
   cd ~/
+  write_or_check_machine_birthdate
   invoke_sprout_wrap
   invoke_homebrew
   setup_neovim
   invoke_softewareupdate
 }
 
+write_or_check_machine_birthdate() {
+  local birthdate_file
+  local birthdate
+
+  birthdate_file=~/.config/osx-homedir/birthdate
+  if [ ! -f "${birthdate_file}" ]
+  then
+    date > "${birthdate_file}"
+  else
+    birthdate="$(cat ${birthdate_file})"
+    echo "Your machine was born on: ${birthdate}"
+    echo ""
+    echo "Have you considered that it might be time to recreate your workstation?"
+    sleep 5
+  fi
+}
 
 invoke_sprout_wrap() {
   if [ ! -d ~/workspace/sprout-wrap ]
