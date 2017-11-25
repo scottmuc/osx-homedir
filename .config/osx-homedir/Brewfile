@@ -14,6 +14,7 @@ brew 'tree'
 
 
 cask '1password'
+cask 'firefox'
 cask 'flycut'
 cask 'iterm2'
 cask 'macdown'
