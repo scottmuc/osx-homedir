@@ -15,7 +15,6 @@ brew 'tree'
 
 cask '1password'
 cask 'flycut'
-cask 'google-chrome'
 cask 'iterm2'
 cask 'macdown'
 cask 'selfcontrol'
