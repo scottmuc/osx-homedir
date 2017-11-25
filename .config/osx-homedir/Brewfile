@@ -8,7 +8,7 @@ brew 'mr'
 brew 'neovim'
 brew 'pstree'
 brew 'python3'
-brew 'ruby-installer'
+brew 'ruby-install'
 brew 'testssl'
 brew 'tree'
 
