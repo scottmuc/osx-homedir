@@ -1,7 +1,8 @@
 "
 " Scott Muc's .vimrc file
 "
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
+
 
 " All the colorschemes
 Plug 'flazz/vim-colorschemes'

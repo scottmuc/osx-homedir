@@ -1,6 +1,6 @@
 [user]
     name = Scott Muc
-    email = scottmuc@gmail.com
+    email = smuc@pivotal.io
 
 [core]
     excludesfile = ~/.gitignore

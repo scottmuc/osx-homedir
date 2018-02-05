@@ -20,6 +20,7 @@
 /.gem
 /.lesshst
 /.local
+/.lpass
 /.netrc
 /.ssh
 /.vagrant.d

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Instructions on how to have add a load script to LastPass are located
+# here: https://github.com/jamesjoshuahill/lastpass-ssh-key
+#
+# Ideas for new features
+# 1. require lpass username so it explicitly loads an individuals keys not the
+#    ones of the person who happens to be logged into lastpass
+
+if ensure-lpass-logged-in ; then
+    bash <(lpass show 'Personal/load-github-ssh-key' --notes) "$1"
+fi
