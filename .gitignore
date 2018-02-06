@@ -10,12 +10,15 @@
 /.Trash
 /.bash_history
 /.bash_sessions
+/.bosh/
+/.bosh_virtualbox_cpi/
 /.bundle
 /.bundler
 /.cache
 /.cf
 /.config/gtk-2.0
 /.cups
+/deployments
 /.dropbox
 /.dropbox-master
 /.gem
