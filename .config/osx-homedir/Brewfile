@@ -1,3 +1,14 @@
+# Tap specific formulae/casks
+tap 'cloudfoundry/tap'
+brew 'cf-cli'
+brew 'bosh-cli'
+brew 'credhub-cli'
+brew 'bbl'
+
+# The following all come from the Homebrew default taps
+# - caskroom/cask
+# - homebrew/bundle
+# - homebrew/core
 brew 'chruby'
 brew 'dep'
 brew 'golang'

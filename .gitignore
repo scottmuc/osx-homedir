@@ -13,6 +13,7 @@
 /.bundle
 /.bundler
 /.cache
+/.cf
 /.config/gtk-2.0
 /.cups
 /.dropbox
