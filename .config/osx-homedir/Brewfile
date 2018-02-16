@@ -21,6 +21,7 @@ brew 'pstree'
 brew 'python3'
 brew 'ruby-install'
 brew 'testssl'
+brew 'tldr'
 brew 'tree'
 
 cask 'caffeine'
