@@ -16,7 +16,8 @@
 /.bundler
 /.cache
 /.cf
-/.config/gtk-2.0
+/.config/direnv
+/.credhub
 /.cups
 /deployments
 /.dropbox

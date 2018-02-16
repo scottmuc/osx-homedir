@@ -34,7 +34,23 @@ export EDITOR="vim -f"
 
 PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
 
+# TODO replace this with a `find chruby.sh`?
 if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
+else
+  echo "Tried to load chruby, but I couldn't find it in:"
+  echo "  /usr/local/opt/chruby/share/chruby/chruby.sh"
+  echo ""
+  echo "Perhaps chruby isn't installed"
+fi
+
+# TODO replace this with a test of `which direnv`
+if [ -e /usr/local/bin/direnv ]; then
+  eval "$(direnv hook bash)"
+else
+  echo "Tried to load direnv, but I couldn't find it in:"
+  echo "  /usr/local/bin/direnv"
+  echo ""
+  echo "Perhaps direnv isn't installed"
 fi
 

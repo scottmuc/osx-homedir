@@ -11,6 +11,7 @@ brew 'bbl'
 # - homebrew/core
 brew 'chruby'
 brew 'dep'
+brew 'direnv'
 brew 'golang'
 brew 'jq'
 brew 'lastpass-cli'
