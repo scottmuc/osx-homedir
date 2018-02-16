@@ -5,6 +5,7 @@
 [core]
     excludesfile = ~/.gitignore
     editor = vim
+    hooksPath = ~/workspace/git-hooks-core
 
 [color]
     ui = auto

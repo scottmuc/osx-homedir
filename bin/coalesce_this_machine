@@ -7,6 +7,7 @@ main() {
   write_or_check_machine_birthdate
   invoke_sprout_wrap
   invoke_homebrew
+  setup_cred_alert_cli
   setup_neovim
   invoke_softewareupdate
 }
@@ -47,6 +48,20 @@ invoke_homebrew() {
 
   brew bundle cleanup --file=~/.config/osx-homedir/Brewfile
   brew bundle --file=~/.config/osx-homedir/Brewfile
+}
+
+setup_cred_alert_cli() {
+  local tmp_file=$(mktemp)
+  local cred_alert_cli_url=https://s3.amazonaws.com/cred-alert/cli/current-release/cred-alert-cli_darwin
+
+  if [ ! -e /usr/local/bin/cred-alert-cli ]; then
+    echo "Installing cred-alert-cli..."
+    curl "${cred_alert_cli_url}" -o "${tmp_file}" 2> /dev/null
+    install "${tmp_file}" /usr/local/bin/cred-alert-cli
+  else
+    echo "Updating cred-alert-cli..."
+    cred-alert-cli update
+  fi
 }
 
 setup_neovim() {
