@@ -5,6 +5,9 @@ brew 'bosh-cli'
 brew 'credhub-cli'
 brew 'bbl'
 
+tap 'go-delve/delve'
+brew 'delve'
+
 # The following all come from the Homebrew default taps
 # - caskroom/cask
 # - homebrew/bundle

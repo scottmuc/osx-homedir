@@ -20,6 +20,7 @@
 /.credhub
 /.cups
 /deployments
+/.dlv
 /.dropbox
 /.dropbox-master
 /.flyrc
@@ -30,10 +31,12 @@
 /.lpass
 /.netrc
 /.oracle_jre_usage
+/.rnd
 /.ssh
 /.tldrc
 /.vagrant.d
 /.viminfo
+/.vscode
 
 # Ignoring application created directories
 /Dropbox
