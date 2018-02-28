@@ -33,6 +33,7 @@
 /.oracle_jre_usage
 /.rnd
 /.ssh
+/.terraform.d
 /.tldrc
 /.vagrant.d
 /.viminfo
