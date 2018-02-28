@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Source: https://discussions.apple.com/thread/4282533
+sudo killall VDCAssistant
