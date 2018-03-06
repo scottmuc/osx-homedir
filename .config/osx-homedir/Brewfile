@@ -29,6 +29,7 @@ brew 'tree'
 
 cask 'caffeine'
 cask 'flycut'
+cask 'google-cloud-sdk'
 cask 'iterm2'
 cask 'java'
 cask 'macdown'

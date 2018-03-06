@@ -54,3 +54,13 @@ else
   echo "Perhaps direnv isn't installed"
 fi
 
+# TODO replace this with a `find google-cloud-sdk/path.bash.inc`?
+if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc ]; then
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+else
+  echo "Tried to load Google Cloud SDK, but I couldn't find it in:"
+  echo "  /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+  echo ""
+  echo "Perhaps the cask google-cloud-sdk isn't installed"
+fi
