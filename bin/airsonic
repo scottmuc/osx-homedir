@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+docker pull airsonic/airsonic:latest
+
+# Setup NAT port forward in VirtualBox so that other machines on the network
+# can access the server
+docker run \
+    -u 1000 \
+    -p 4040:4040 \
+    -v `pwd`/music:/airsonic/music:z \
+    -v `pwd`/data:/airsonic/data:z \
+    airsonic/airsonic:latest
