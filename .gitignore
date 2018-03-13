@@ -15,6 +15,7 @@
 /.cache
 /.config/gtk-2.0
 /.cups
+/.docker
 /.dropbox
 /.dropbox-master
 /.gem
