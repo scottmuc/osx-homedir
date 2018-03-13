@@ -21,6 +21,7 @@
 /.local
 /.netrc
 /.ssh
+/.tldrc
 /.vagrant.d
 /.viminfo
 
