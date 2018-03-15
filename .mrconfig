@@ -11,3 +11,9 @@ checkout = git clone 'git@github.com:concourse/concourse-deployment.git' 'concou
 
 [workspace/git-hooks-core]
 checkout = git clone 'https://github.com/pivotal-cf/git-hooks-core.git' 'git-hooks-core'
+
+[workspace/i0-tracker-template]
+checkout = git clone 'git@github.com:pivotalservices/i0-tracker-template.git' 'i0-tracker-template'
+
+[workspace/tracker-csv-tool]
+checkout = git clone 'git@github.com:pivotalservices/tracker-csv-tool.git' 'tracker-csv-tool'
