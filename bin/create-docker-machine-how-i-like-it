@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+docker-machine create \
+  --driver virtualbox \
+  --virtualbox-cpu-count "2" \
+  --virtualbox-memory "2048" \
+  default

@@ -23,6 +23,7 @@
 /.cups
 /deployments
 /.dlv
+/.docker
 /.flyrc
 /.gem
 /.gradle
