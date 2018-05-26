@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
+# At some point I need to follow these instructions to just be able to mount
+# a drive and be ready to rock:
+# https://docs.sevenbridges.com/docs/mount-a-usb-drive-in-a-docker-container
+
 set -e
 
 docker pull airsonic/airsonic:latest
 
 # Setup NAT port forward in VirtualBox so that other machines on the network
-# can access the server
+# can access the server. The uid of 1000 is because that's what the docker uid
+# is on the Virtualbox VM
 docker run \
     -u 1000 \
     -p 4040:4040 \
-    -v `pwd`/music:/airsonic/music:z \
-    -v `pwd`/data:/airsonic/data:z \
+    -v ${HOME}/airsonic/music:/airsonic/music:z \
+    -v ${HOME}/airsonic/data:/airsonic/data:z \
     airsonic/airsonic:latest
