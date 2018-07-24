@@ -64,3 +64,9 @@ else
   echo ""
   echo "Perhaps the cask google-cloud-sdk isn't installed"
 fi
+
+if [ "$(docker-machine status)" = "Running" ]; then
+  eval $(docker-machine env)
+else
+  echo "Tried to load docker env, but the docker machine is not running"
+fi
