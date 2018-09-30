@@ -1,8 +1,13 @@
 # OSX Homedir
 
+### Bootstrapping the bootstrapping
+
+Before anything can happen, the first thing that needs to be done is to create a Mojave USB boot device. I've
+followed the [osxdaily post](http://osxdaily.com/2018/09/26/make-macos-mojave-boot-usb-installer/).
+
 ### Bootstrapping a brand spanking new machine
 
-On a freshly installed **macOS Sierra** machine the following commands will get everything configured.
+On a freshly installed **macOS Mojave** machine the following commands will get everything configured.
 
 ```
 sudo xcodebuild -license
