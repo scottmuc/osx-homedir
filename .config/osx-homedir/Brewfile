@@ -16,7 +16,7 @@ brew 'tree'
 
 
 cask '1password'
-cask 'brave'
+cask 'brave-browser'
 cask 'flycut'
 cask 'gnucash'
 cask 'libreoffice'
