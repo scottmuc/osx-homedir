@@ -1,5 +1,6 @@
 tap 'neovim/neovim'
 
+brew 'autojump'
 brew 'chruby'
 brew 'dep'
 brew 'golang'

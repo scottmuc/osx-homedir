@@ -38,3 +38,7 @@ if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
 fi
 
+if [ -f /usr/local/etc/profile.d/autojump.sh ]; then
+  source /usr/local/etc/profile.d/autojump.sh
+fi
+
