@@ -12,8 +12,6 @@ export PATH="$HOME/go/bin:$PATH"
 export TERM='xterm-256color'
 
 alias ls='ls -G'
-alias ll='ls -lhG'
-alias la='ls -lahG'
 alias vim='nvim'
 
 export LSCOLORS="GxFxCxDxBxEgEdabagacad"
@@ -26,9 +24,7 @@ export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
-alias vdu="vagrant destroy -f && vagrant up"
 alias q="exit"
-alias be="bundle exec"
 
 export EDITOR="vim -f"
 
