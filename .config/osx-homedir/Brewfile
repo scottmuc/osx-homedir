@@ -12,7 +12,6 @@ brew 'tree'
 
 
 cask '1password'
-cask 'brave-browser'
 cask 'flycut'
 cask 'macdown'
 cask 'selfcontrol'
