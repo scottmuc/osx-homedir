@@ -8,6 +8,7 @@ main() {
   invoke_sprout_wrap
   invoke_homebrew
   setup_neovim
+  configure_tap_to_click
   invoke_softewareupdate
 }
 
@@ -91,6 +92,16 @@ invoke_softewareupdate() {
       echo remove ${softwareupdate_indicator} to force an update
     fi
   fi
+}
+
+# copied from:
+# - https://github.com/mathiasbynens/dotfiles/blob/master/.macos#L147-L150
+# - http://osxdaily.com/2014/01/31/turn-on-mac-touch-to-click-command-line/
+configure_tap_to_click() {
+  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 }
 
 main
