@@ -10,3 +10,6 @@ checkout = git clone 'git@github.com:scottmuc/pudget.git' 'pudget'
 
 [workspace/presentations]
 checkout = git clone 'git@github.com:scottmuc/presentations.git' 'presentations'
+
+[workspace/infrastructure]
+checkout = git clone 'git@github.com:scottmuc/infrastructure.git' 'infrastructure'
