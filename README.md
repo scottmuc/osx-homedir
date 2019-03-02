@@ -18,7 +18,6 @@ curl -L https://raw.githubusercontent.com/scottmuc/osx-homedir/master/bin/curl-b
 **Manual Steps**
 
 * Map capslock to control
-* Set trackpad to tap-to-click
 * Launch 1Password and authenticate via credentials+salt stored on a dead tree
 * Launch shiftit and get it setup
 * Launch flycut and get it setup
