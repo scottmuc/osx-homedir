@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 
+# With the JSON returned from this script you can then do a tiny bit of analysis like:
+# ~ ? cat items.json | jq -r '.list[] | select(.tags != null) | .tags[].tag' | sort | uniq -c | sort -nr
+# 18 remote
+#  6 tls
+#  6 golang
+#  5 management
+#  3 ubi
+#  3 gaming
+#  3 fire
+#  2 work
+#  2 sre
+#  2 privacy
+#  2 documentation
+#  2 diversity
+#  1 walking
+#  1 tags
+#  1 separated by commas
+#  1 okrs
+#  1 k8s
+#  1 finance
+#  1 cooking
+#  1 cloud
+#  1 burnout
+#  1 berlin
+
+
 set -e
 set -o pipefail
 
