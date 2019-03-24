@@ -40,6 +40,9 @@
 /Pictures
 /Public
 
+# 1passowrd CLI directory contains secrets
+/.config/.op
+
 # This is created my the bootstrap script
 /.config/osx-homedir/.softwareupdate_indicator
 /.config/osx-homedir/birthdate

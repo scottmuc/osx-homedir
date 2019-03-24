@@ -24,6 +24,9 @@ export HISTSIZE=10000
 # Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
+# Added to signal 1password-cli
+export XDG_CONFIG_HOME="${HOME}/.config"
+
 alias q="exit"
 
 export EDITOR="vim -f"
