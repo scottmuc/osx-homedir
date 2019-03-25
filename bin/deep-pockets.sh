@@ -12,8 +12,8 @@ main() {
     sync)
       sync
       ;;
-    tags)
-      tag_stats
+    stats)
+      display_stats
       ;;
     *)
       print_usage_and_exit
@@ -31,17 +31,18 @@ Commands:
  - sync
      synchronize data locally with what's on getpocket.com
 
- - tags
-     list tag stats
+ - stats
+     displays some stats of the whole dataset
 
 HELP
 
   exit 1
 }
 
-tag_stats() {
+display_stats() {
   total_count=$(cat ~/.config/deep-pockets/data.json | jq .list[].item_id | wc -l)
   tagged_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | .item_id' | wc -l)
+  unread_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.status == "0") | .item_id' | wc -l)
   tag_counts=$(cat ~/.config/deep-pockets/data.json \
     | jq -r '.list[] | select(.tags != null) | .tags[].tag' \
     | sort \
@@ -50,6 +51,7 @@ tag_stats() {
 
   cat <<STATS
 article count    : ${total_count}
+articles unread  : ${unread_count}
 articles tagged  : ${tagged_count}
 tag counts       :
 ${tag_counts}
