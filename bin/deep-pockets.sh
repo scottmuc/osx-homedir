@@ -40,11 +40,21 @@ HELP
 }
 
 tag_stats() {
-  cat ~/.config/deep-pockets/data.json \
+  total_count=$(cat ~/.config/deep-pockets/data.json | jq .list[].item_id | wc -l)
+  tagged_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | .item_id' | wc -l)
+  tag_counts=$(cat ~/.config/deep-pockets/data.json \
     | jq -r '.list[] | select(.tags != null) | .tags[].tag' \
     | sort \
     | uniq -c \
-    | sort -nr
+    | sort -nr)
+
+  cat <<STATS
+article count    : ${total_count}
+articles tagged  : ${tagged_count}
+tag counts       :
+${tag_counts}
+STATS
+
 }
 
 sync() {
