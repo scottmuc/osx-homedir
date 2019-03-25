@@ -1,77 +1,99 @@
 #!/usr/bin/env bash
 
-# With the JSON returned from this script you can then do a tiny bit of analysis like:
-# ~ ? cat items.json | jq -r '.list[] | select(.tags != null) | .tags[].tag' | sort | uniq -c | sort -nr
-# 18 remote
-#  6 tls
-#  6 golang
-#  5 management
-#  3 ubi
-#  3 gaming
-#  3 fire
-#  2 work
-#  2 sre
-#  2 privacy
-#  2 documentation
-#  2 diversity
-#  1 walking
-#  1 tags
-#  1 separated by commas
-#  1 okrs
-#  1 k8s
-#  1 finance
-#  1 cooking
-#  1 cloud
-#  1 burnout
-#  1 berlin
-
-
 set -e
 set -o pipefail
 
 [[ -z "${DEBUG}" ]] || set -x
 
-# this jq query is an example of what makes the 1password CLI hard to work with
-CONSUMER_KEY=$(op get item "deep-pockets" | \
-  jq -r '.details.sections[] |select(.fields)| .fields[] | select(.t == "consumer-key") | .v')
+main() {
+  local sub_command
+  sub_command=$1
+  case "$sub_command" in
+    sync)
+      sync
+      ;;
+    tags)
+      tag_stats
+      ;;
+    *)
+      print_usage_and_exit
+      ;;
+  esac
+}
 
-# stub webserver to handle browser redirect from getpocket.com
-REDIRECT_URL="http://localhost:1500/"
+print_usage_and_exit() {
+  cat <<HELP
+usage: $0 <command>
 
-request_code=$(curl \
-  https://getpocket.com/v3/oauth/request 2>/dev/null \
-  -X POST \
-  -H "Content-Type: application/json; charset=UTF-8" \
-  -H "X-Accept: application/json" \
-  -d @- <<JSON |
+Deep understanding of getpocket.com data
+
+Commands:
+ - sync
+     synchronize data locally with what's on getpocket.com
+
+ - tags
+     list tag stats
+
+HELP
+
+  exit 1
+}
+
+tag_stats() {
+  cat ~/.config/deep-pockets/data.json \
+    | jq -r '.list[] | select(.tags != null) | .tags[].tag' \
+    | sort \
+    | uniq -c \
+    | sort -nr
+}
+
+sync() {
+  if [[ ! -d ~/.config/deep-pockets ]]; then
+    mkdir -p ~/.config/deep-pockets
+  fi
+
+  # this jq query is an example of what makes the 1password CLI hard to work with
+  # it is also coupling to my personal preference for a password manager
+  CONSUMER_KEY=$(op get item "deep-pockets" | \
+    jq -r '.details.sections[] |select(.fields)| .fields[] | select(.t == "consumer-key") | .v')
+
+  # stub webserver to handle browser redirect from getpocket.com
+  REDIRECT_URL="http://localhost:1500/"
+
+  request_code=$(curl \
+    https://getpocket.com/v3/oauth/request 2>/dev/null \
+    -X POST \
+    -H "Content-Type: application/json; charset=UTF-8" \
+    -H "X-Accept: application/json" \
+    -d @- <<JSON |
 {
   "consumer_key":"${CONSUMER_KEY}",
   "redirect_uri":"${REDIRECT_URL}"
 }
 JSON
-  jq -r .code)
+    jq -r .code)
 
-open "https://getpocket.com/auth/authorize?request_token=${request_code}&redirect_uri=${REDIRECT_URL}"
+  open "https://getpocket.com/auth/authorize?request_token=${request_code}&redirect_uri=${REDIRECT_URL}"
 
-nc -l localhost 1500 >/dev/null < <(echo -e "HTTP/1.1 200 OK\n\n $(date)")
+  nc -l localhost 1500 >/dev/null < <(echo -e "HTTP/1.1 200 OK\n\n $(date)")
 
-access_token=$(curl \
-  https://getpocket.com/v3/oauth/authorize 2>/dev/null \
-  -X POST \
-  -H "Content-Type: application/json; charset=UTF-8" \
-  -H "X-Accept: application/json" \
-  -d @- <<JSON |
+  access_token=$(curl \
+    https://getpocket.com/v3/oauth/authorize 2>/dev/null \
+    -X POST \
+    -H "Content-Type: application/json; charset=UTF-8" \
+    -H "X-Accept: application/json" \
+    -d @- <<JSON |
 {
   "consumer_key":"${CONSUMER_KEY}",
   "code":"${request_code}"
 }
 JSON
-  jq -r .access_token)
+    jq -r .access_token)
 
 
-# interesting thing about `read` is that it doesn't exit 0 when successful
-# so that's why the trailing `true`
-read -r -d '' req_json <<FOO ||
+  # interesting thing about `read` is that it doesn't exit 0 when successful
+  # so that's why the trailing `true`
+  read -r -d '' req_json <<FOO ||
 {
   "consumer_key":"${CONSUMER_KEY}",
   "access_token":"${access_token}",
@@ -79,13 +101,18 @@ read -r -d '' req_json <<FOO ||
   "detailType":"complete"
 }
 FOO
-true
+  true
 
-# There is 1 single endpoint for retrieval of date from pocket. Everything
-# you need to know is here: https://getpocket.com/developer/docs/v3/retrieve
-curl \
-  https://getpocket.com/v3/get 2>/dev/null \
-  -X GET \
-  -H "Content-Type: application/json" \
-  -d "${req_json}"
+  # There is 1 single endpoint for retrieval of date from pocket. Everything
+  # you need to know is here: https://getpocket.com/developer/docs/v3/retrieve
+  curl \
+    https://getpocket.com/v3/get 2>/dev/null \
+    -o ~/.config/deep-pockets/data.json \
+    -X GET \
+    -H "Content-Type: application/json" \
+    -d "${req_json}"
 
+  echo Data synchronized!
+}
+
+main "$@"

@@ -47,5 +47,8 @@
 /.config/osx-homedir/.softwareupdate_indicator
 /.config/osx-homedir/birthdate
 
+# Location of deep-pockets data
+/.config/deep-pockets
+
 # Where rubys are installed via ruby-install
 /.rubies
