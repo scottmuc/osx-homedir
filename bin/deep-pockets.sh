@@ -7,13 +7,17 @@ set -o pipefail
 
 main() {
   local sub_command
-  sub_command=$1
+  sub_command="$1"
   case "$sub_command" in
     sync)
       sync
       ;;
     stats)
       display_stats
+      ;;
+    posts-by-tag)
+      tag="$2"
+      posts_by_tag "${tag}"
       ;;
     *)
       print_usage_and_exit
@@ -34,9 +38,17 @@ Commands:
  - stats
      displays some stats of the whole dataset
 
+ - posts-by-tag <tag>
+     lists the urls of articles associated with a tag
 HELP
 
   exit 1
+}
+
+posts_by_tag() {
+  local tag="$1"
+  cat ~/.config/deep-pockets/data.json \
+    | jq -r ".list[] | select(.tags != null) | select(.tags[].tag == \"${tag}\") | .given_url"
 }
 
 display_stats() {
