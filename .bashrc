@@ -1,5 +1,5 @@
-source ~/bin/colours.bash
-source ~/bin/git_completion.bash
+source ~/vendor/bash/colours.bash
+source ~/vendor/bash/git-completion.bash
 
 # ~/bin is the location of personal scripts I would like available everywhere
 export PATH="$HOME/bin:$PATH"
