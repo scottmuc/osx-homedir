@@ -17,11 +17,10 @@ alias vim='nvim'
 export LSCOLORS="GxFxCxDxBxEgEdabagacad"
 export GREP_OPTIONS="--color"
 
-# Erase duplicates in history
+# Erase duplicates in history, keep 10k entris, and append to the history file
+# rather than overwriting it.
 export HISTCONTROL=erasedups
-# Store 10k history entries
 export HISTSIZE=10000
-# Append to the history file when exiting instead of overwriting it
 shopt -s histappend
 
 # Added to signal 1password-cli
