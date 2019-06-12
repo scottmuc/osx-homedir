@@ -56,6 +56,8 @@ display_stats() {
   tagged_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | .item_id' | wc -l)
   work_related_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | .tags[] | select(.tag == "work-related") | .item_id' | wc -l)
   unread_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.status == "0") | .item_id' | wc -l)
+  reading_time=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[].time_to_read' | paste -sd+ - | bc)
+  work_related_reading_time=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | select(.tags[].tag == "work-related") | .time_to_read' | paste -sd+ - | bc)
   tag_counts=$(cat ~/.config/deep-pockets/data.json \
     | jq -r '.list[] | select(.tags != null) | .tags[].tag' \
     | sort \
@@ -63,11 +65,13 @@ display_stats() {
     | sort -nr)
 
   cat <<STATS
-article count         : ${total_count}
-articles unread       : ${unread_count}
-articles tagged       : ${tagged_count}
-articles work related : ${work_related_count}
-tag counts            :
+article count              : ${total_count}
+articles unread            : ${unread_count}
+articles tagged            : ${tagged_count}
+articles work related      : ${work_related_count}
+reading time (work related): ${work_related_reading_time}m
+reading time               : ${reading_time}m
+tag counts                 :
 ${tag_counts}
 STATS
 
