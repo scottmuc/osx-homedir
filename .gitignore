@@ -4,7 +4,6 @@
 # anyone using OSX just ignore this
 .DS_Store
 
-	.terraform.d/
 # Ignoring temporary dot directories
 /.CFUserTextEncoding
 /.NERDTreeBookmarks
@@ -22,6 +21,7 @@
 /.local
 /.netrc
 /.ssh
+/.terraform.d/
 /.tldrc
 /.vagrant.d
 /.viminfo
