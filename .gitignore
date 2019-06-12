@@ -4,6 +4,7 @@
 # anyone using OSX just ignore this
 .DS_Store
 
+	.terraform.d/
 # Ignoring temporary dot directories
 /.CFUserTextEncoding
 /.NERDTreeBookmarks
@@ -39,6 +40,10 @@
 /Music
 /Pictures
 /Public
+
+# gcloud related directories
+/.gsutil/
+/.config/gcloud/
 
 # 1passowrd CLI directory contains secrets
 /.config/.op
