@@ -19,6 +19,9 @@ main() {
       tag="$2"
       posts_by_tag "${tag}"
       ;;
+    time-series-csv)
+      time_series_csv
+      ;;
     *)
       print_usage_and_exit
       ;;
@@ -40,9 +43,17 @@ Commands:
 
  - posts-by-tag <tag>
      lists the urls of articles associated with a tag
+
+ - time-series-csv
+     lists all items over time
 HELP
 
   exit 1
+}
+
+time_series_csv() {
+  echo "time_read,time_to_read"
+  jq -r '.list | map([.time_read, .time_to_read] | join(",") ) | join("\n")' ~/.config/deep-pockets/data.json
 }
 
 posts_by_tag() {
