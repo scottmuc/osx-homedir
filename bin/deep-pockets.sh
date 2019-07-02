@@ -72,13 +72,20 @@ posts_by_tag() {
     "${SYNCED_JSON_DATA}"
 }
 
+work_related() {
+  jq '.list[]
+    | select(.tags != null)
+    | select(.tags[].tag == "work-related")' \
+    "${SYNCED_JSON_DATA}"
+}
+
 display_stats() {
   total_count=$(jq .list[].item_id "${SYNCED_JSON_DATA}" | wc -l)
   tagged_count=$(jq -r '.list[] | select(.tags != null) | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
-  work_related_count=$(jq -r '.list[] | select(.tags != null) | .tags[] | select(.tag == "work-related") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
+  work_related_count=$(work_related | jq .item_id | wc -l)
   unread_count=$(jq -r '.list[] | select(.status == "0") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
   reading_time=$(jq -r '.list[].time_to_read' "${SYNCED_JSON_DATA}" | paste -sd+ - | bc)
-  work_related_reading_time=$(jq -r '.list[] | select(.tags != null) | select(.tags[].tag == "work-related") | .time_to_read' "${SYNCED_JSON_DATA}" | paste -sd+ - | bc)
+  work_related_reading_time=$(work_related | jq -r .time_to_read | paste -sd+ - | bc)
   tag_counts=$(jq -r '.list[] | select(.tags != null) | .tags[].tag' "${SYNCED_JSON_DATA}" \
     | sort \
     | uniq -c \
