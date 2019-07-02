@@ -61,19 +61,17 @@ time_series_csv() {
 
 posts_by_tag() {
   local tag="$1"
-  cat "${SYNCED_JSON_DATA}" \
-    | jq -r ".list[] | select(.tags != null) | select(.tags[].tag == \"${tag}\") | .given_url"
+  jq -r ".list[] | select(.tags != null) | select(.tags[].tag == \"${tag}\") | .given_url" "${SYNCED_JSON_DATA}"
 }
 
 display_stats() {
-  total_count=$(cat "${SYNCED_JSON_DATA}" | jq .list[].item_id | wc -l)
-  tagged_count=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.tags != null) | .item_id' | wc -l)
-  work_related_count=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.tags != null) | .tags[] | select(.tag == "work-related") | .item_id' | wc -l)
-  unread_count=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.status == "0") | .item_id' | wc -l)
-  reading_time=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[].time_to_read' | paste -sd+ - | bc)
-  work_related_reading_time=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.tags != null) | select(.tags[].tag == "work-related") | .time_to_read' | paste -sd+ - | bc)
-  tag_counts=$(cat "${SYNCED_JSON_DATA}" \
-    | jq -r '.list[] | select(.tags != null) | .tags[].tag' \
+  total_count=$(jq .list[].item_id "${SYNCED_JSON_DATA}" | wc -l)
+  tagged_count=$(jq -r '.list[] | select(.tags != null) | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
+  work_related_count=$(jq -r '.list[] | select(.tags != null) | .tags[] | select(.tag == "work-related") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
+  unread_count=$(jq -r '.list[] | select(.status == "0") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
+  reading_time=$(jq -r '.list[].time_to_read' "${SYNCED_JSON_DATA}" | paste -sd+ - | bc)
+  work_related_reading_time=$(jq -r '.list[] | select(.tags != null) | select(.tags[].tag == "work-related") | .time_to_read' "${SYNCED_JSON_DATA}" | paste -sd+ - | bc)
+  tag_counts=$(jq -r '.list[] | select(.tags != null) | .tags[].tag' "${SYNCED_JSON_DATA}" \
     | sort \
     | uniq -c \
     | sort -nr)
