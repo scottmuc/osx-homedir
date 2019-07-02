@@ -5,6 +5,9 @@ set -o pipefail
 
 [[ -z "${DEBUG}" ]] || set -x
 
+CACHE_DIR="${HOME}/.config/deep-pockets"
+SYNCED_JSON_DATA="${CACHE_DIR}/data.json"
+
 main() {
   local sub_command
   sub_command="$1"
@@ -53,23 +56,23 @@ HELP
 
 time_series_csv() {
   echo "time_read,time_to_read"
-  jq -r '.list | map([.time_read, .time_to_read] | join(",") ) | join("\n")' ~/.config/deep-pockets/data.json
+  jq -r '.list | map([.time_read, .time_to_read] | join(",") ) | join("\n")' "${SYNCED_JSON_DATA}"
 }
 
 posts_by_tag() {
   local tag="$1"
-  cat ~/.config/deep-pockets/data.json \
+  cat "${SYNCED_JSON_DATA}" \
     | jq -r ".list[] | select(.tags != null) | select(.tags[].tag == \"${tag}\") | .given_url"
 }
 
 display_stats() {
-  total_count=$(cat ~/.config/deep-pockets/data.json | jq .list[].item_id | wc -l)
-  tagged_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | .item_id' | wc -l)
-  work_related_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | .tags[] | select(.tag == "work-related") | .item_id' | wc -l)
-  unread_count=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.status == "0") | .item_id' | wc -l)
-  reading_time=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[].time_to_read' | paste -sd+ - | bc)
-  work_related_reading_time=$(cat ~/.config/deep-pockets/data.json | jq -r '.list[] | select(.tags != null) | select(.tags[].tag == "work-related") | .time_to_read' | paste -sd+ - | bc)
-  tag_counts=$(cat ~/.config/deep-pockets/data.json \
+  total_count=$(cat "${SYNCED_JSON_DATA}" | jq .list[].item_id | wc -l)
+  tagged_count=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.tags != null) | .item_id' | wc -l)
+  work_related_count=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.tags != null) | .tags[] | select(.tag == "work-related") | .item_id' | wc -l)
+  unread_count=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.status == "0") | .item_id' | wc -l)
+  reading_time=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[].time_to_read' | paste -sd+ - | bc)
+  work_related_reading_time=$(cat "${SYNCED_JSON_DATA}" | jq -r '.list[] | select(.tags != null) | select(.tags[].tag == "work-related") | .time_to_read' | paste -sd+ - | bc)
+  tag_counts=$(cat "${SYNCED_JSON_DATA}" \
     | jq -r '.list[] | select(.tags != null) | .tags[].tag' \
     | sort \
     | uniq -c \
@@ -89,8 +92,8 @@ STATS
 }
 
 sync() {
-  if [[ ! -d ~/.config/deep-pockets ]]; then
-    mkdir -p ~/.config/deep-pockets
+  if [[ ! -d "${CACHE_DIR}" ]]; then
+    mkdir -p "${CACHE_DIR}"
   fi
 
   # this jq query is an example of what makes the 1password CLI hard to work with
@@ -148,7 +151,7 @@ FOO
   # you need to know is here: https://getpocket.com/developer/docs/v3/retrieve
   curl \
     https://getpocket.com/v3/get 2>/dev/null \
-    -o ~/.config/deep-pockets/data.json \
+    -o "${SYNCED_JSON_DATA}" \
     -X GET \
     -H "Content-Type: application/json" \
     -d "${req_json}"
