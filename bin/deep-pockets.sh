@@ -48,7 +48,7 @@ Commands:
      lists the urls of articles associated with a tag
 
  - time-series-csv
-     lists all items over time
+     lists all read articles over time
 HELP
 
   exit 1
@@ -56,11 +56,12 @@ HELP
 
 time_series_csv() {
   echo "time_read,time_to_read"
-  jq -r '.list
-    | map([.time_read, .time_to_read]
-    | join(",") )
-    | join("\n")' \
-    "${SYNCED_JSON_DATA}"
+  # if .time_to_read is null/empty, then choosing a time to read of 7
+  # because that was the median value last time I calculated it
+  read_articles \
+    | jq -r "[.time_read,
+               if (.time_to_read | length) == 0 then 7 else .time_to_read end
+             ] | @csv"
 }
 
 posts_by_tag() {
@@ -76,9 +77,14 @@ tagged() {
   all | jq "select(.tags != null)"
 }
 
+read_articles() {
+  all | jq 'select(.is_article == "1") | select(.status = "1")'
+}
+
 all() {
   jq ".list[]" "${SYNCED_JSON_DATA}"
 }
+
 
 display_stats() {
   total_count=$(all | jq '.item_id' | wc -l)
