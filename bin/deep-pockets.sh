@@ -65,28 +65,25 @@ time_series_csv() {
 
 posts_by_tag() {
   local tag="$1"
-  jq -r ".list[]
-    | select(.tags != null)
-    | select(.tags[].tag == \"${tag}\")
-    | .given_url" \
-    "${SYNCED_JSON_DATA}"
+  tagged | jq -r ". | select(.tags[].tag == \"${tag}\") | .given_url"
 }
 
 work_related() {
-  jq '.list[]
-    | select(.tags != null)
-    | select(.tags[].tag == "work-related")' \
-    "${SYNCED_JSON_DATA}"
+  tagged | jq '. | select(.tags[].tag == "work-related")'
+}
+
+tagged() {
+  jq '.list[] | select(.tags != null)' "${SYNCED_JSON_DATA}"
 }
 
 display_stats() {
   total_count=$(jq '.list | length' "${SYNCED_JSON_DATA}")
-  tagged_count=$(jq -r '.list[] | select(.tags != null) | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
+  tagged_count=$(tagged | jq .item_id | wc -l)
   work_related_count=$(work_related | jq .item_id | wc -l)
   unread_count=$(jq -r '.list[] | select(.status == "0") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
   reading_time=$(jq -r '.list[].time_to_read' "${SYNCED_JSON_DATA}" | paste -sd+ - | bc)
   work_related_reading_time=$(work_related | jq -r .time_to_read | paste -sd+ - | bc)
-  tag_counts=$(jq -r '.list[] | select(.tags != null) | .tags[].tag' "${SYNCED_JSON_DATA}" \
+  tag_counts=$(tagged | jq -r .tags[].tag \
     | sort \
     | uniq -c \
     | sort -nr)
