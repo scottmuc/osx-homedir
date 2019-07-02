@@ -73,15 +73,19 @@ work_related() {
 }
 
 tagged() {
-  jq '.list[] | select(.tags != null)' "${SYNCED_JSON_DATA}"
+  all | jq "select(.tags != null)"
+}
+
+all() {
+  jq ".list[]" "${SYNCED_JSON_DATA}"
 }
 
 display_stats() {
-  total_count=$(jq '.list | length' "${SYNCED_JSON_DATA}")
+  total_count=$(all | jq '.item_id' | wc -l)
   tagged_count=$(tagged | jq .item_id | wc -l)
   work_related_count=$(work_related | jq .item_id | wc -l)
-  unread_count=$(jq -r '.list[] | select(.status == "0") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
-  reading_time=$(jq -r '.list[].time_to_read' "${SYNCED_JSON_DATA}" | paste -sd+ - | bc)
+  unread_count=$(all | jq -r 'select(.status == "0") | .item_id' | wc -l)
+  reading_time=$(all | jq -r '.time_to_read' | paste -sd+ - | bc)
   work_related_reading_time=$(work_related | jq -r .time_to_read | paste -sd+ - | bc)
   tag_counts=$(tagged | jq -r .tags[].tag \
     | sort \
