@@ -56,12 +56,20 @@ HELP
 
 time_series_csv() {
   echo "time_read,time_to_read"
-  jq -r '.list | map([.time_read, .time_to_read] | join(",") ) | join("\n")' "${SYNCED_JSON_DATA}"
+  jq -r '.list
+    | map([.time_read, .time_to_read]
+    | join(",") )
+    | join("\n")' \
+    "${SYNCED_JSON_DATA}"
 }
 
 posts_by_tag() {
   local tag="$1"
-  jq -r ".list[] | select(.tags != null) | select(.tags[].tag == \"${tag}\") | .given_url" "${SYNCED_JSON_DATA}"
+  jq -r ".list[]
+    | select(.tags != null)
+    | select(.tags[].tag == \"${tag}\")
+    | .given_url" \
+    "${SYNCED_JSON_DATA}"
 }
 
 display_stats() {
