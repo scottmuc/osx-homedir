@@ -80,7 +80,7 @@ work_related() {
 }
 
 display_stats() {
-  total_count=$(jq .list[].item_id "${SYNCED_JSON_DATA}" | wc -l)
+  total_count=$(jq '.list | length' "${SYNCED_JSON_DATA}")
   tagged_count=$(jq -r '.list[] | select(.tags != null) | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
   work_related_count=$(work_related | jq .item_id | wc -l)
   unread_count=$(jq -r '.list[] | select(.status == "0") | .item_id' "${SYNCED_JSON_DATA}" | wc -l)
