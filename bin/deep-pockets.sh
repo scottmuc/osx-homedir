@@ -55,12 +55,14 @@ HELP
 }
 
 time_series_csv() {
-  echo "time_read,time_to_read"
+  echo "time_read,time_to_read,work_related,tags"
   # if .time_to_read is null/empty, then choosing a time to read of 7
   # because that was the median value last time I calculated it
   read_articles \
     | jq -r "[.time_read,
-               if (.time_to_read | length) == 0 then 7 else .time_to_read end
+               if (.time_to_read | length) == 0 then 7 else .time_to_read end,
+               if (.tags | length) == 0 then false else (.tags.\"work-related\" != null) end,
+               if (.tags | length) == 0 then \"untagged\" else (.tags | map(.tag) | join(\":\")) end
              ] | @csv"
 }
 
