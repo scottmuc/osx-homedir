@@ -25,6 +25,9 @@ Plug 'Shougo/deoplete.nvim'
 
 Plug 'scrooloose/nerdtree'
 
+" Trying out ALE for sytax linting (mainly for shellcheck)
+Plug 'w0rp/ale'
+
 " Required
 call plug#end()
 
@@ -117,6 +120,23 @@ imap jk <esc>
 
 nmap j gj
 nmap k gk
+
+scriptencoding utf-8
+
+nmap <silent> <C-S-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-S-j> <Plug>(ale_next_wrap)
+
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '➤'
+let g:ale_sign_info = '➟'
+let g:ale_sign_column_always = 1
+
+let g:ale_linters = {
+\   'go': ['go build', 'gofmt', 'gometalinter'],
+\}
+
+" Enable completion where available.
+let g:ale_completion_enabled = 1
 
 "----------------------------------------------------------
 " status line stuff 
