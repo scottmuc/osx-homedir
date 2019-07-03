@@ -139,9 +139,14 @@ sync() {
 JSON
     jq -r .code)
 
-  open "https://getpocket.com/auth/authorize?request_token=${request_code}&redirect_uri=${redirect_url}"
+  echo "Need to request a token, please open the following URL in your browser:
+
+  https://getpocket.com/auth/authorize?request_token=${request_code}&redirect_uri=${redirect_url}
+"
 
   nc -l localhost 1500 >/dev/null < <(echo -e "HTTP/1.1 200 OK\n\n $(date)")
+
+  echo "Fetching data..."
 
   access_token=$(curl \
     https://getpocket.com/v3/oauth/authorize 2>/dev/null \
