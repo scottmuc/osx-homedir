@@ -112,17 +112,19 @@ STATS
 }
 
 sync() {
+  local redirect_url consumer_key
+
   if [[ ! -d "${CACHE_DIR}" ]]; then
     mkdir -p "${CACHE_DIR}"
   fi
 
   # this jq query is an example of what makes the 1password CLI hard to work with
   # it is also coupling to my personal preference for a password manager
-  CONSUMER_KEY=$(op get item "deep-pockets" | \
+  consumer_key=$(op get item "deep-pockets" | \
     jq -r '.details.sections[] |select(.fields)| .fields[] | select(.t == "consumer-key") | .v')
 
   # stub webserver to handle browser redirect from getpocket.com
-  REDIRECT_URL="http://localhost:1500/"
+  redirect_url="http://localhost:1500/"
 
   request_code=$(curl \
     https://getpocket.com/v3/oauth/request 2>/dev/null \
@@ -131,13 +133,13 @@ sync() {
     -H "X-Accept: application/json" \
     -d @- <<JSON |
 {
-  "consumer_key":"${CONSUMER_KEY}",
-  "redirect_uri":"${REDIRECT_URL}"
+  "consumer_key":"${consumer_key}",
+  "redirect_uri":"${redirect_url}"
 }
 JSON
     jq -r .code)
 
-  open "https://getpocket.com/auth/authorize?request_token=${request_code}&redirect_uri=${REDIRECT_URL}"
+  open "https://getpocket.com/auth/authorize?request_token=${request_code}&redirect_uri=${redirect_url}"
 
   nc -l localhost 1500 >/dev/null < <(echo -e "HTTP/1.1 200 OK\n\n $(date)")
 
@@ -148,7 +150,7 @@ JSON
     -H "X-Accept: application/json" \
     -d @- <<JSON |
 {
-  "consumer_key":"${CONSUMER_KEY}",
+  "consumer_key":"${consumer_key}",
   "code":"${request_code}"
 }
 JSON
@@ -159,7 +161,7 @@ JSON
   # so that's why the trailing `true`
   read -r -d '' req_json <<FOO ||
 {
-  "consumer_key":"${CONSUMER_KEY}",
+  "consumer_key":"${consumer_key}",
   "access_token":"${access_token}",
   "state":"all",
   "detailType":"complete"
