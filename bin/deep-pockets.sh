@@ -55,14 +55,35 @@ HELP
 }
 
 time_series_csv() {
-  echo "time_read,time_to_read,work_related,tags"
-  # if .time_to_read is null/empty, then choosing a time to read of 7
-  # because that was the median value last time I calculated it
-  read_articles \
-    | jq -r "[.time_read,
-               if (.time_to_read | length) == 0 then 7 else .time_to_read end,
-               if (.tags | length) == 0 then false else (.tags.\"work-related\" != null) end,
-               if (.tags | length) == 0 then \"untagged\" else (.tags | map(.tag) | join(\":\")) end
+  # TODO extract a function to compute the median time to read (currently it's 7)
+  # This now outputs a per article:tag pair. So if an article has 2 tags, 3 rows will
+  # be printed
+  #
+  # This is because of the addition of the "tagged" tag. This allows datastudio to ignore
+  # the repeated articles by creating a filter that UNIONs all "tagged" and "untagged" articles.
+  # The other rows can then be used to break things down more (hopefully)
+  echo "time_read,time_to_read,tag"
+  tagged \
+    | jq -r "(if (.time_to_read | length) == 0 then 7 else .time_to_read end) as \$time_to_read |
+            [  .time_read,
+               \$time_to_read,
+               \"tagged\"
+             ] | @csv"
+
+  tagged \
+    | jq -r "(if (.time_to_read | length) == 0 then 7 else .time_to_read end) as \$time_to_read |
+              .time_read as \$time_read |
+              .tags | to_entries[] |
+            [  \$time_read,
+               \$time_to_read,
+               .key
+             ] | @csv"
+
+  untagged \
+    | jq -r "(if (.time_to_read | length) == 0 then 7 else .time_to_read end) as \$time_to_read |
+            [  .time_read,
+               \$time_to_read,
+               \"untagged\"
              ] | @csv"
 }
 
@@ -77,6 +98,10 @@ work_related() {
 
 tagged() {
   all | jq "select(.tags != null)"
+}
+
+untagged() {
+  all | jq "select(.tags == null)"
 }
 
 read_articles() {
