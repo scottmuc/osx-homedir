@@ -22,8 +22,11 @@ main() {
       tag="$2"
       posts_by_tag "${tag}"
       ;;
-    time-series-csv)
-      time_series_csv
+    reading-time-csv)
+      reading_time_csv
+      ;;
+    tags-csv)
+      tags_csv
       ;;
     *)
       print_usage_and_exit
@@ -47,22 +50,41 @@ Commands:
  - posts-by-tag <tag>
      lists the urls of articles associated with a tag
 
- - time-series-csv
+ - reading-time-csv
      lists all read articles over time
+
+ - tags-csv
+     lists all read articles by tag
 HELP
 
   exit 1
 }
 
-time_series_csv() {
-  # TODO extract a function to compute the median time to read (currently it's 7)
+# TODO extract a function to compute the median time to read (currently it's 7)
+# TODO create separate script that makes it easy to pipe csv into Google Sheets
+
+reading_time_csv() {
+# TODO figure out why .time_read is sometimes 0 for read articles
+  echo "timestamp,reading_time,work_related_reading_time"
+  read_articles \
+    | jq -r "(if (.time_to_read | length) == 0 then 7 else .time_to_read end) as \$time_to_read |
+             (if (.tags | length) == 0 then false else (.tags.\"work-related\" != null) end) as \$work_related |
+               [
+                 .time_read,
+                 if (\$work_related) then 0 else \$time_to_read end,
+                 if (\$work_related) then \$time_to_read else 0 end
+	             ] | @csv"
+}
+
+tags_csv() {
+# TODO this should all be based off of read_articles
   # This now outputs a per article:tag pair. So if an article has 2 tags, 3 rows will
   # be printed
   #
   # This is because of the addition of the "tagged" tag. This allows datastudio to ignore
   # the repeated articles by creating a filter that UNIONs all "tagged" and "untagged" articles.
   # The other rows can then be used to break things down more (hopefully)
-  echo "time_read,time_to_read,tag"
+  echo "timestamp,reading_time,tag"
   tagged \
     | jq -r "(if (.time_to_read | length) == 0 then 7 else .time_to_read end) as \$time_to_read |
             [  .time_read,
@@ -97,11 +119,11 @@ work_related() {
 }
 
 tagged() {
-  all | jq "select(.tags != null)"
+  read_articles | jq "select(.tags != null)"
 }
 
 untagged() {
-  all | jq "select(.tags == null)"
+  read_articles | jq "select(.tags == null)"
 }
 
 read_articles() {
