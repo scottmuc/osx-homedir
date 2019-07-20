@@ -163,9 +163,7 @@ STATS
 sync() {
   local redirect_url consumer_key
 
-  if [[ ! -d "${CACHE_DIR}" ]]; then
-    mkdir -p "${CACHE_DIR}"
-  fi
+  mkdir -p "${CACHE_DIR}"
 
   # this jq query is an example of what makes the 1password CLI hard to work with
   # it is also coupling to my personal preference for a password manager
