@@ -1,6 +1,3 @@
-source ~/vendor/bash/colours.bash
-source ~/vendor/bash/git-completion.bash
-
 # ~/bin is the location of personal scripts I would like available everywhere
 export PATH="$HOME/bin:$PATH"
 
@@ -21,7 +18,6 @@ export GREP_OPTIONS="--color"
 # rather than overwriting it.
 export HISTCONTROL=erasedups
 export HISTSIZE=10000
-shopt -s histappend
 
 # Added to signal 1password-cli
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -30,7 +26,9 @@ alias q="exit"
 
 export EDITOR="vim -f"
 
-PS1="\[${VIOLET}\]\\w \[${GREEN}\]? \[${RESET}\]"
+autoload colors && colors
+PS1="%{$fg[yellow]%}%~ %{$reset_color%}%\? "
+
 
 if [ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]; then
   source /usr/local/opt/chruby/share/chruby/chruby.sh
@@ -41,7 +39,7 @@ if [ -f /usr/local/etc/profile.d/autojump.sh ]; then
 fi
 
 if [ -d /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
-  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc
-  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+  source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 fi
 
