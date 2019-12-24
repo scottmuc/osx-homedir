@@ -15,7 +15,6 @@
     co = checkout
     di = diff
     dc = diff --cached
-    aa = add --all
 
     # custom log that is a copy of Gary Bernhardt's
     l  = "!source ~/.githelpers && pretty_git_log"
@@ -25,5 +24,3 @@
     # too many train tracks and push the information off the edge of the screen
     ll  = log --oneline --decorate --graph
     lla = !git ll --all
-
-    pom = push origin master
