@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# This command only works on macOS Sierra
-# reference: https://coolestguidesontheplanet.com/clear-the-local-dns-cache-in-osx/
-sudo killall -HUP mDNSResponder
+# reference: https://www.catalinaosx.com/reset-and-flush-dns-cache-macos-catalina/
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+
 
 echo "Consider yourself flushed!"
