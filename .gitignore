@@ -27,8 +27,8 @@
 /.viminfo
 
 # Ignoring application created directories
-/Dropbox
 /VirtualBox VMs
+/Google Drive
 
 # Ignoring standard OSX directories
 /Applications
