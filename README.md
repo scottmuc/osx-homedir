@@ -1,5 +1,11 @@
 # OSX Homedir
 
+```diff
+- This repository is no longer used for my workstation setup. I prefer to have 1 repository for all my personal
+- infrastructure. Unfortunately this means that I cannot use a repository as a homedir. You can see the future
+- development of it here: https://github.com/scottmuc/infrastructure/tree/master/homedirs
+```
+
 ### Bootstrapping the bootstrapping
 
 Before anything can happen, the first thing that needs to be done is to create a Mojave USB boot device. I've
