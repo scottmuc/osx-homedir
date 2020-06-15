@@ -1,9 +1,10 @@
 # OSX Homedir
 
 ```diff
-- This repository is no longer used for my workstation setup. I prefer to have 1 repository for all my personal
-- infrastructure. Unfortunately this means that I cannot use a repository as a homedir. You can see the future
-- development of it here: https://github.com/scottmuc/infrastructure/tree/master/homedirs
+- This repository is no longer used for my workstation setup. I prefer to have 1
+- repository for all my personal infrastructure. Unfortunately this means that I
+- cannot use a repository as a homedir. You can see the future development of it
+- here: https://github.com/scottmuc/infrastructure/tree/master/homedirs
 ```
 
 ### Bootstrapping the bootstrapping
